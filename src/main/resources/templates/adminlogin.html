@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+    <title>Personal Blog</title>
 </head>
+
 <body>
-    <p>adminlogin page</p>
+    <div th:insert="fragments/repeated.html :: header"></div>
+
+    <main>
+        <h2>Admin Login Page</h2>
+        <hr>
+        <form id="loginform">
+            <input type="text" name="username" id="username" placeholder="Enter Username..."><br>
+            <input type="text" name="password" id="password" placeholder="Enter password..."><br>
+            <button type="submit">Login</button><br>
+        </form>
+    </main>
+
+    <div th:insert="fragments/repeated.html :: footer"></div>
+    <script>
+        document.getElementById("loginform").addEventListener("submit", submitLoginForm);
+
+        async function submitLoginForm(event) {
+            event.preventDefault()
+
+            if (username.value != "" || password.value != "") {
+                const formData = {
+                    username: document.getElementById("username").value,
+                    password: document.getElementById("password").value
+                }
+
+                const url = "http://localhost:8080/admin/verify";
+
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+
+                // const result = await response.json;
+
+                // if(result == "true") {
+                //     location.href = "http://localhost:8080/admin/dashboard";
+                // } else {
+                //     alert("Incorrect Login Credentials. Try again!");
+                // }
+
+
+            } else {
+                alert("Invalid Input");
+            }
+
+        }
+    </script>
 </body>
+
 </html>

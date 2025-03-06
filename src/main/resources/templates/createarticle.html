@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+    <title>Personal Blog</title>
 </head>
 <body>
-    <p>createarticle page</p>
+    <div th:insert="fragments/repeated.html :: header"></div>
+
+    <main>
+        <h2>New Article Page</h2>
+        <hr>
+        <form>
+            <input type="text" name="title" id="title" placeholder="Enter title..."><br>
+            <input type="text" name="publishdate" id="publishdate" placeholder="Enter publish date..."><br>
+            <textarea name="content" id="content" rows="30" placeholder="Enter content..."></textarea><br>
+            <button type="submit">Publish</button><br>
+        </form>
+    </main>
+
+    <div th:insert="fragments/repeated.html :: footer"></div>
 </body>
 </html>

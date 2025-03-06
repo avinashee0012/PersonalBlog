@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+    <title>Personal Blog</title>
 </head>
 <body>
-    <p>Article View Page: Id=<span th:text="${id}"></span></p>
+    <div th:insert="fragments/repeated.html :: header"></div>
+
+    <main>
+        <h2>Article View Page</h2>
+        <hr>
+        <p>Id=<span th:text="${id}"></span></p>
+    </main>
+
+    <div th:insert="fragments/repeated.html :: footer"></div>
 </body>
 </html>

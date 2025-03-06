@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/styles.css}" rel="stylesheet" />
+    <title>Personal Blog</title>
+</head>
+
+<body>
+    <header class="header" th:fragment="header">
+        <h1>Personal Blog<span id="usertype"></span></h1>
+        <ul class="hor-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/article/100">Article</a></li>
+            <li><a href="/admin">Admin</a></li>
+        </ul>
+    </header>
+
+    <footer class="footer" th:fragment="footer">
+        <p>&copy; Rebellion Inc. 2025</p>
+        <script type="text/javascript" th:src="@{/scripts.js}"></script>
+    </footer>
+</body>
+
+</html>

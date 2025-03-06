@@ -21,11 +21,12 @@ public class AdminController {
     }
 
     @PostMapping("verify")
-    public String verifyAdminLogin(@RequestBody Admin entity) {
-        // verify if form input matches the harcoded credentials
-            // if yes --> redirect to /dashboard
-            // else --> redirect to "/admin"
-        return "redirect:/dashboard";
+    public String verifyAdminLogin(@RequestBody Admin input) {
+        Admin admin = new Admin();
+        if ((input.getUsername().equals(admin.getUsername())) && (input.getPassword().equals(admin.getPassword()))) {
+            return "dashboard";
+        } 
+        return "adminlogin";
     }
     
     @GetMapping("dashboard")

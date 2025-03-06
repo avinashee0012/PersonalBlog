@@ -13,7 +13,7 @@ A personal blog where one can write and publish articles. The blog has two secti
 4. **Authentication:** Session based on hardcoded username and password for the admin section.
 
 ### Technologies Used:
-- **Frontend:** HTML, CSS
+- **Frontend:** HTML, CSS, JS
 - **Backend:** Java, Springboot, Apache Tomcat, MVC Architecture, JSON, Thymeleaf, Jackson
 - **Source Code Management:** Git, GitHub, Maven, VS Code
 
