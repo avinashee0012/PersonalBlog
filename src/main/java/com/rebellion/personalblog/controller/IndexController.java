@@ -37,6 +37,7 @@ public class IndexController {
         return modelAndView;
     }
 
+    // TODO: Content should be HTML formatted.
     @GetMapping("article/{id}")
     public ModelAndView getViewArticlePage(@PathVariable int id, ModelAndView modelAndView) throws IOException {
         try {
