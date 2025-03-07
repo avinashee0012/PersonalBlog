@@ -1,18 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:href="@{/styles.css}" rel="stylesheet" />
     <title>Personal Blog</title>
 </head>
+
 <body>
-    <div th:insert="fragments/repeated.html :: header"></div>
+    <div th:insert="~{fragments/repeated.html :: header}"></div>
 
     <main>
-        <h2>Edit Article Page</h2>
+        <h2>Edit Article</h2>
+        <hr>
+        <form id="create-article-form">
+            <input type="text" name="id" id="id" th:value="${model.id}" disabled>
+            <input type="text" name="title" id="title" th:value="${model.title}" autofocus><br>
+            <input type="text" name="publishdate" id="publishdate" th:value="${model.publishdate}"><br>
+            <textarea name="content" id="content" rows="30" th:value="${model.content}"></textarea><br>
+            <button type="submit">Publish</button><br>
+        </form>
     </main>
 
-    <div th:insert="fragments/repeated.html :: footer"></div>
+    <div th:insert="~{fragments/repeated.html :: footer}"></div>
+    <script>
+        document.getElementById("create-article-form").addEventListener("submit", publishArticle);
+
+        async function publishArticle(event) {
+            event.preventDefault()
+
+            const id = document.getElementById("id");
+            const title = document.getElementById("title");
+            const publishdate = document.getElementById("publishdate");
+            const content = document.getElementById("content");
+
+            if (title.value == "" || publishdate.value == "" || content.value == "") {
+                alert("Invalid Input");
+            } else {
+                const formData = {
+                    title: title.value,
+                    publishdate: publishdate.value,
+                    content: content.value
+                }
+
+                const url = "http://localhost:8080/admin/editArticle/" + id.value;
+
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+
+                if(response.ok) {
+                    location.href = response.url;
+                }
+            }
+
+        }
+    </script>
 </body>
+
 </html>

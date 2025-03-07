@@ -7,14 +7,17 @@
     <title>Personal Blog</title>
 </head>
 <body>
-    <div th:insert="fragments/repeated.html :: header"></div>
+    <div th:insert="~{fragments/repeated.html :: header}"></div>
 
     <main>
-        <h2>Article View Page</h2>
-        <hr>
-        <p>Id=<span th:text="${id}"></span></p>
+        <div class="article-container">
+            <h1 th:text="${title}"></h1>
+            <p><small th:text="${publishdate}"></small></p>
+            <hr>
+            <p th:text="${content}"></p>
+        </div>
     </main>
 
-    <div th:insert="fragments/repeated.html :: footer"></div>
+    <div th:insert="~{fragments/repeated.html :: footer}"></div>
 </body>
 </html>

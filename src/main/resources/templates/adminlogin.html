@@ -9,32 +9,37 @@
 </head>
 
 <body>
-    <div th:insert="fragments/repeated.html :: header"></div>
+    <div th:insert="~{fragments/repeated.html :: header}"></div>
 
     <main>
-        <h2>Admin Login Page</h2>
+        <h2>Admin Login</h2>
         <hr>
         <form id="loginform">
-            <input type="text" name="username" id="username" placeholder="Enter Username..."><br>
+            <input type="text" name="username" id="username" placeholder="Enter Username..." autofocus><br>
             <input type="text" name="password" id="password" placeholder="Enter password..."><br>
             <button type="submit">Login</button><br>
         </form>
     </main>
 
-    <div th:insert="fragments/repeated.html :: footer"></div>
+    <div th:insert="~{fragments/repeated.html :: footer}"></div>
     <script>
         document.getElementById("loginform").addEventListener("submit", submitLoginForm);
 
         async function submitLoginForm(event) {
             event.preventDefault()
 
-            if (username.value != "" || password.value != "") {
+            const username = document.getElementById("username");
+            const password = document.getElementById("password");
+
+            if (username.value == "" || password.value == "") {
+                alert("Invalid Input");
+            } else {
                 const formData = {
                     username: document.getElementById("username").value,
                     password: document.getElementById("password").value
                 }
 
-                const url = "http://localhost:8080/admin/verify";
+                const url = "http://localhost:8080/admin";
 
                 const response = await fetch(url, {
                     method: "POST",
@@ -44,17 +49,9 @@
                     body: JSON.stringify(formData)
                 })
 
-                // const result = await response.json;
-
-                // if(result == "true") {
-                //     location.href = "http://localhost:8080/admin/dashboard";
-                // } else {
-                //     alert("Incorrect Login Credentials. Try again!");
-                // }
-
-
-            } else {
-                alert("Invalid Input");
+                if(response.ok) {
+                    location.href = response.url;
+                }
             }
 
         }
