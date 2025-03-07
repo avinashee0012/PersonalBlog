@@ -1,18 +1,16 @@
 package com.rebellion.personalblog.entity;
 
-import java.time.LocalDate;
-
 public class Article {
 
     private int id;
     private String title;
-    private LocalDate date;
+    private String publishdate;
     private String content;
 
-    public Article(int id, String title, LocalDate date, String content) {
+    public Article(int id, String title, String publishdate, String content) {
         this.id = id;
         this.title = title;
-        this.date = date;
+        this.publishdate = publishdate;
         this.content = content;
     }
 
@@ -35,12 +33,12 @@ public class Article {
         this.title = title;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getPublishdate() {
+        return publishdate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setPublishdate(String publishdate) {
+        this.publishdate = publishdate;
     }
 
     public String getContent() {
@@ -53,6 +51,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article [id=" + id + ", title=" + title + ", date=" + date + ", content=" + content + "]";
+        return "Article [id=" + id + ", title=" + title + ", publishdate=" + publishdate + ", content=" + content + "]";
     }
+
 }
