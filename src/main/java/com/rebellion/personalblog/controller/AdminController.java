@@ -110,23 +110,17 @@ public class AdminController {
         return modelAndView;
     }
 
-    // TODO: editArticle submission is inconsistent.
     @PostMapping("editArticle/{id}")
     public String postEditArticlePage(@PathVariable int id, @RequestBody Article input) throws StreamReadException, DatabindException, IOException {
-        Article article = new Article();
-        article.setTitle(input.getTitle());
-        article.setPublishdate(input.getPublishdate());
-        article.setContent(input.getContent());
+        Article article = new Article(id, input.getTitle(), input.getPublishdate(), input.getContent());
         mapper.writeValue(new File("./articles/article" + id + ".json"), article);
 
-        Index index = new Index();
-        index.setId(id);
-        index.setDate(article.getPublishdate());
-        index.setTitle(article.getTitle());
+        Index index = new Index(id, input.getPublishdate(), input.getTitle());
 
         for (Index i : listJson) {
             if(i.getId() == id) {
-                listJson.add(listJson.indexOf(i), index);
+                listJson.remove(i);
+                listJson.add(index);
                 break;
             }
         }

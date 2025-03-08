@@ -4,6 +4,7 @@ public class Article {
 
     private int id;
     private String title;
+    // TODO: publishdate should be in LocalDate datatype
     private String publishdate;
     private String content;
 

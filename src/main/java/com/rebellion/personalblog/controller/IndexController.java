@@ -24,31 +24,26 @@ import jakarta.servlet.http.HttpSession;
 public class IndexController {
 
     private ObjectMapper mapper;
-    
+
     public IndexController(ObjectMapper mapper) {
         this.mapper = mapper;
     }
 
     @GetMapping("")
-    public ModelAndView getHomePage(ModelAndView modelAndView) throws StreamReadException, DatabindException, IOException {
-        List<Index> list = mapper.readValue(new File("./articles/index.json"), new TypeReference<List<Index>>(){});
+    public ModelAndView getHomePage(ModelAndView modelAndView)
+            throws StreamReadException, DatabindException, IOException {
+        List<Index> list = mapper.readValue(new File("./articles/index.json"), new TypeReference<List<Index>>() {
+        });
         modelAndView.addObject("list", list);
         modelAndView.setViewName("homepage");
         return modelAndView;
     }
-
+    
     // TODO: Content should be HTML formatted.
     @GetMapping("article/{id}")
     public ModelAndView getViewArticlePage(@PathVariable int id, ModelAndView modelAndView) throws IOException {
-        try {
-            Article article = mapper.readValue(new File("./articles/article" + id + ".json"), Article.class);
-            modelAndView.addObject("id", article.getId());
-            modelAndView.addObject("title", article.getTitle());
-            modelAndView.addObject("publishdate", article.getPublishdate());
-            modelAndView.addObject("content", article.getContent());
-        } catch (Exception e) {
-            modelAndView.addObject("status", String.format("File not found with ID: %d!", id));
-        }
+        Article article = mapper.readValue(new File("./articles/article" + id + ".json"), Article.class);
+        modelAndView.addObject("model", article);
         modelAndView.setViewName("articleview");
         return modelAndView;
     }
@@ -58,5 +53,5 @@ public class IndexController {
         session.invalidate();
         return "redirect:/";
     }
-    
+
 }

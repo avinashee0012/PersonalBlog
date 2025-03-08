@@ -2,6 +2,7 @@ package com.rebellion.personalblog.entity;
 
 public class Index {
     private int id;
+    // TODO: date should be in LocalDate datatype
     private String date;
     private String title;
 
