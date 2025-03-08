@@ -1,4 +1,4 @@
-# [Ongoing] Personal Blog
+# [COMPLETE] Personal Blog
 
 A personal blog where one can write and publish articles. The blog has two sections: a guest section and an admin section.
 
@@ -60,6 +60,8 @@ _____
 Some Bug Fixes:
 - Publish Date should be have LocalDate type. Currently it's String.
 - Content should be HTML formatted.
+- Incorrect API conventions to be correct. @GetMapping instead of @DeleteMapping
+- Better success/failure/error alerts to be placed.
 
 ####
 Project Idea: [roadmap.sh](https://roadmap.sh/projects/personal-blog) 
