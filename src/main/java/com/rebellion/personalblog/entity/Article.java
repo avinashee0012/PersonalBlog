@@ -1,6 +1,7 @@
 package com.rebellion.personalblog.entity;
 
-public class Article {
+// TODO: Can Article extend Index instead?
+public class Article{
 
     private int id;
     private String title;

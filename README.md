@@ -22,6 +22,7 @@ A personal blog where one can write and publish articles. The blog has two secti
 ```bash
 git clone git@github.com:avinashee0012/PersonalBlog.git
 cd PersonalBlog
+
 ```
 2. Run war file
 ```bash
@@ -47,7 +48,7 @@ NOTE: If port 8080 is busy, another port will be used and can be found from term
 ![Admin Login Page](<pages_screenshots/Admin Login.png>)
 
 2. Admin Dashboard Page
-![Admin Dashboard Page](<pages_screenshots/admin dashboard.png>)
+![Admin Dashboard Page](<pages_screenshots/Admin Dashboard Page.png>)
 
 3. Create Article Page
 ![Create Article Page](<pages_screenshots/Create Article.png>)

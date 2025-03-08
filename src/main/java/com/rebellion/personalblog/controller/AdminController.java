@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private HttpSession session;
-    private ObjectMapper mapper;
+    private final HttpSession session;
+    private final ObjectMapper mapper;
     List<Index> listJson;
 
     public AdminController(HttpSession session, ObjectMapper mapper) throws StreamReadException, DatabindException, IOException {
@@ -53,8 +53,6 @@ public class AdminController {
         Admin admin = new Admin();
         // if session not found ==> route to adminlogin ==> create session on success and route to dashboard
         if ((input.getUsername().equals(admin.getUsername())) && (input.getPassword().equals(admin.getPassword()))) {
-            session.setAttribute("username", input.getUsername());
-            session.setAttribute("password", input.getPassword());
             session.setAttribute("usertype", "admin");
             return "redirect:/admin/dashboard";
         }
@@ -128,6 +126,24 @@ public class AdminController {
 
         return "redirect:/admin/dashboard";
     }
+
+    // TODO: Using GetMapping for delete request for simplicity.
+    // Need to be fixed later
+    @GetMapping("deleteArticle/{id}")
+    public String deleteArticleById(@PathVariable int id) throws StreamReadException, DatabindException, IOException {
+
+        File file = new File("./articles/article" + id + ".json");
+        file.delete();
+        for (Index i : listJson) {
+            if(i.getId() == id) {
+                listJson.remove(i);
+                break;
+            }
+        }
+        mapper.writeValue(new File("./articles/index.json"), listJson);
+        return "redirect:/admin/dashboard";
+    }
+
 
     @GetMapping("clear")
     public ModelAndView deleteAllArticles(ModelAndView modelAndView) throws StreamReadException, DatabindException, IOException {

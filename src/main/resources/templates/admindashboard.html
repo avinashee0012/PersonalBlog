@@ -16,7 +16,7 @@
         <hr>
         <div style="padding: 15px;">
             <ul class="hor-list" style="text-align: center;">
-                <li><a href="/admin/clear" style="color: rgb(224, 7, 7);">Delete Articles</a></li>
+                <li><a href="/admin/clear" style="color: rgb(224, 7, 7);">Clear All</a></li>
                 <li><a href="/logout" style="color: black;">Admin Logout</a></li>
                 <li><a href="/admin/createArticle" style="color: black;">Create Article</a></li>
             </ul>
@@ -31,9 +31,14 @@
             </thead>
             <tbody>
                 <tr th:each="article : ${list}">
-                    <td><a th:href="@{~/article/{id}(id=${article.id})}" target="_blank"><strong><p th:text="${article.title}"></p></strong></a></td>
-                    <td><p th:text="${article.date}"></p></td>
-                    <td><a th:href="@{/admin/editArticle/{id}(id=${article.id})}"><button>Edit</button></a></td>
+                    <td><a th:href="@{~/article/{id}(id=${article.id})}" target="_blank"><strong>
+                                <p th:text="${article.title}"></p>
+                            </strong></a></td>
+                    <td>
+                        <p th:text="${article.date}"></p>
+                    </td>
+                    <td><a th:href="@{/admin/editArticle/{id}(id=${article.id})}"><button>Edit</button></a><a
+                            th:href="@{/admin/deleteArticle/{id}(id=${article.id})}"><button>Delete</button></a></td>
                 </tr>
             </tbody>
         </table>
