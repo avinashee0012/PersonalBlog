@@ -60,7 +60,7 @@ _____
 Some Bug Fixes:
 - Publish Date should be have LocalDate type. Currently it's String.
 - Content should be HTML formatted.
-- Incorrect API conventions to be correct. @GetMapping instead of @DeleteMapping
+- Incorrect API conventions to be corrected. Eg., @GetMapping instead of @DeleteMapping
 - Better success/failure/error alerts to be placed.
 
 ####
